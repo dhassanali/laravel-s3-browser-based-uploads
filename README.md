@@ -7,10 +7,24 @@ Upload files to AWS S3 Directly from Browser
 
 ## Installation
 
-You can install the package via composer:
+- 1 Install the package via composer:
 
 ```bash
 composer require hassan/laravel-s3-browser-based-uploads
+```
+
+- 2 Publish the config file of the package.
+
+```bash
+php artisan vendor:publish --provider="Hassan\S3BrowserBasedUploads\ServiceProvider" --tag=config
+```
+- 3 add your AWS settings
+
+```bash
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+AWS_BUCKET=
 ```
 
 ## Usage

@@ -19,11 +19,17 @@ class S3BrowserBasedUploadsManager extends PostObjectV4
         parent::__construct($client, $bucket, $formInputs, $options, $expiration);
     }
 
+    /**
+     * @return string
+     */
     public function getEndpointUrl() : string
     {
         return $this->getFormAttributes()['action'];
     }
 
+    /**
+     * @return array
+     */
     public function getFields() : array
     {
         return $this->getFormInputs();

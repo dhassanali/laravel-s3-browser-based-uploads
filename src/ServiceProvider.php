@@ -19,31 +19,6 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    protected function getS3Adapter() : AwsS3Adapter
-    {
-        return $this->app['filesystem']->disk($this->getConfig('disk'))->getAdapter();
-    }
-
-    protected function getInputs() : array
-    {
-        return $this->getConfig('inputs', []);
-    }
-
-    protected function getConditions() : array
-    {
-        return $this->getConfig('conditions', []);
-    }
-
-    protected function getExpirationTime() : string
-    {
-        return $this->getConfig('expiration_time', '+5 minutes');
-    }
-
-    public function getConfig(string $key, $default = null)
-    {
-        return config('s3-browser-based-uploads.providers.default.' . $key, $default);
-    }
-
     /**
      * Register the application services.
      */
@@ -64,5 +39,48 @@ class ServiceProvider extends BaseServiceProvider
         });
 
         $this->app->alias(S3BrowserBasedUploadsManager::class, 's3-browser-based-uploads');
+    }
+
+
+    /**
+     * @return AwsS3Adapter
+     */
+    protected function getS3Adapter() : AwsS3Adapter
+    {
+        return $this->app['filesystem']->disk($this->getConfig('disk'))->getAdapter();
+    }
+
+    /**
+     *  returns inputs from config file
+     */
+    protected function getInputs() : array
+    {
+        return $this->getConfig('inputs', []);
+    }
+
+    /**
+     *  returns conditions from config file
+     */
+    protected function getConditions() : array
+    {
+        return $this->getConfig('conditions', []);
+    }
+
+    /**
+     *  returns expiration time from config file
+     */
+    protected function getExpirationTime() : string
+    {
+        return $this->getConfig('expiration_time', '+5 minutes');
+    }
+
+    /**
+     * @param  string  $key
+     * @param  null  $default
+     * @return mixed
+     */
+    protected function getConfig(string $key, $default = null)
+    {
+        return config('s3-browser-based-uploads.providers.default.' . $key, $default);
     }
 }
