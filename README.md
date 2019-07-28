@@ -35,6 +35,9 @@ use Hassan\S3BrowserBasedUploads\Facades\S3BrowserBasedUploads;
 S3BrowserBasedUploads::getEndpointUrl()
 
 S3BrowserBasedUploads::getFields()
+
+// with another connection
+S3BrowserBasedUploads::connection('another')->getFields();
 ```
 
 ## Example
