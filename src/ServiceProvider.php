@@ -2,15 +2,15 @@
 
 namespace Hassan\S3BrowserBasedUploads;
 
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot() : void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -22,65 +22,51 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Register the application services.
      */
-    public function register()
+    public function register() : void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 's3-browser-based-uploads');
 
-        $this->app->bind(S3BrowserBasedUploadsManager::class, function () {
-            $adapter = $this->getS3Adapter();
+        $this->registerFactory();
 
-            return new S3BrowserBasedUploadsManager(
-                $adapter->getClient(),
-                $adapter->getBucket(),
-                $this->getInputs(),
-                $this->getConditions(),
-                $this->getExpirationTime()
-            );
+        $this->registerManager();
+    }
+
+    /**
+     * Register the factory class.
+     *
+     * @return void
+     */
+    public function registerFactory() : void
+    {
+        $this->app->singleton('s3-browser-based-uploads.factory', static function () {
+            return new S3BrowserBasedUploadsFactory;
         });
 
-        $this->app->alias(S3BrowserBasedUploadsManager::class, 's3-browser-based-uploads');
+        $this->app->alias('s3-browser-based-uploads.factory', S3BrowserBasedUploadsFactory::class);
+    }
+
+    /**
+     * Register the manager class.
+     *
+     * @return void
+     */
+    public function registerManager() : void
+    {
+        $this->app->singleton('s3-browser-based-uploads', static function (Container $app) {
+            return new S3BrowserBasedUploadsManager($app['config'], $app['s3-browser-based-uploads.factory']);
+        });
+
+        $this->app->alias('s3-browser-based-uploads', S3BrowserBasedUploadsManager::class);
     }
 
 
     /**
-     * @return AwsS3Adapter
+     * Get the services.
+     *
+     * @return array
      */
-    protected function getS3Adapter() : AwsS3Adapter
+    public function provides(): array
     {
-        return $this->app['filesystem']->disk($this->getConfig('disk'))->getAdapter();
-    }
-
-    /**
-     *  returns inputs from config file
-     */
-    protected function getInputs() : array
-    {
-        return $this->getConfig('inputs', []);
-    }
-
-    /**
-     *  returns conditions from config file
-     */
-    protected function getConditions() : array
-    {
-        return $this->getConfig('conditions', []);
-    }
-
-    /**
-     *  returns expiration time from config file
-     */
-    protected function getExpirationTime() : string
-    {
-        return $this->getConfig('expiration_time', '+5 minutes');
-    }
-
-    /**
-     * @param  string  $key
-     * @param  null  $default
-     * @return mixed
-     */
-    protected function getConfig(string $key, $default = null)
-    {
-        return config('s3-browser-based-uploads.providers.default.' . $key, $default);
+        return ['s3-browser-based-uploads', 's3-browser-based-uploads.factory'];
     }
 }

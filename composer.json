@@ -18,7 +18,9 @@
         "php": "^7.1",
         "aws/aws-sdk-php": "^3.0",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "illuminate/support": "5.8.*"
+        "graham-campbell/manager": "^4.2",
+        "illuminate/support": "5.8.*",
+        "illuminate/contracts": "5.8.*"
     },
     "require-dev": {
         "orchestra/testbench": "3.8.*",

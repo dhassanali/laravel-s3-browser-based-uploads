@@ -2,36 +2,50 @@
 
 namespace Hassan\S3BrowserBasedUploads;
 
-use Aws\S3\PostObjectV4;
-use Aws\S3\S3ClientInterface;
+use Illuminate\Contracts\Config\Repository;
+use GrahamCampbell\Manager\AbstractManager;
 
-class S3BrowserBasedUploadsManager extends PostObjectV4
+class S3BrowserBasedUploadsManager extends AbstractManager
 {
-    public function __construct(
-        S3ClientInterface $client,
-        $bucket,
-        array $formInputs,
-        array $options = [],
-        $expiration = '+1 hours'
-    ) {
-        $options[] = ['bucket' => $bucket];
+    /**
+     * @var S3BrowserBasedUploadsFactory
+     */
+    protected $factory;
 
-        parent::__construct($client, $bucket, $formInputs, $options, $expiration);
+    /**
+     * Create a new manager instance.
+     *
+     * @param Repository $config
+     * @param S3BrowserBasedUploadsFactory $factory
+     *
+     * @return void
+     */
+    public function __construct(Repository $config, S3BrowserBasedUploadsFactory $factory)
+    {
+        parent::__construct($config);
+
+        $this->factory = $factory;
     }
 
     /**
+     * Create the connection instance.
+     *
+     * @param  array  $config
+     *
+     * @return S3BrowserBasedUploads
+     */
+    protected function createConnection(array $config) : S3BrowserBasedUploads
+    {
+        return $this->factory->make($config);
+    }
+
+    /**
+     * Get the configuration name.
+     *
      * @return string
      */
-    public function getEndpointUrl() : string
+    protected function getConfigName() : string
     {
-        return $this->getFormAttributes()['action'];
-    }
-
-    /**
-     * @return array
-     */
-    public function getFields() : array
-    {
-        return $this->getFormInputs();
+        return 's3-browser-based-uploads';
     }
 }
