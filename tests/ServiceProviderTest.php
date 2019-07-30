@@ -15,5 +15,4 @@ class ServiceProviderTest extends AbstractTestCase
         $this->assertIsInjectable(S3BrowserBasedUploadsFactory::class);
         $this->assertIsInjectable(S3BrowserBasedUploadsManager::class);
     }
-
 }

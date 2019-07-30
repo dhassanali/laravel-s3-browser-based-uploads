@@ -6,7 +6,6 @@ return [
 
     'connections' => [
 
-
         'main' => [
             'disk' => 's3', // your S3 disk in your filesystem config
             'expiration_time' => '+5 minutes',
@@ -23,7 +22,6 @@ return [
                 ['content-length-range', 0, 1000000],
             ],
         ],
-
 
         'another' => [
             'disk' => 's3',
