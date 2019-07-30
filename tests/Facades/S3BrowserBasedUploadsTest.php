@@ -3,9 +3,9 @@
 namespace Hassan\S3BrowserBasedUploads\Tests\Facades;
 
 use GrahamCampbell\TestBenchCore\FacadeTrait;
-use Hassan\S3BrowserBasedUploads\Facades\S3BrowserBasedUploads;
-use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploadsManager;
 use Hassan\S3BrowserBasedUploads\Tests\AbstractTestCase;
+use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploadsManager;
+use Hassan\S3BrowserBasedUploads\Facades\S3BrowserBasedUploads;
 
 class S3BrowserBasedUploadsTest extends AbstractTestCase
 {

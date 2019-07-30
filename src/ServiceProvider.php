@@ -59,7 +59,6 @@ class ServiceProvider extends BaseServiceProvider
         $this->app->alias('s3-browser-based-uploads', S3BrowserBasedUploadsManager::class);
     }
 
-
     /**
      * Get the services.
      *

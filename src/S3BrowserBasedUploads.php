@@ -21,7 +21,7 @@ class S3BrowserBasedUploads extends PostObjectV4
     }
 
     /**
-     * get the endpoint url
+     * get the endpoint url.
      *
      * @return string
      */
@@ -31,7 +31,7 @@ class S3BrowserBasedUploads extends PostObjectV4
     }
 
     /**
-     * get the fields
+     * get the fields.
      *
      * @return array
      */
@@ -41,7 +41,7 @@ class S3BrowserBasedUploads extends PostObjectV4
     }
 
     /**
-     * Bind the credentials route
+     * Bind the credentials route.
      *
      * @param array $options
      *

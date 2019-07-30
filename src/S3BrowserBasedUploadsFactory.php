@@ -28,7 +28,7 @@ class S3BrowserBasedUploadsFactory
     }
 
     /**
-     * get the s3 adapter
+     * get the s3 adapter.
      *
      * @param array $config
      *
@@ -40,7 +40,7 @@ class S3BrowserBasedUploadsFactory
     }
 
     /**
-     * get the inputs
+     * get the inputs.
      *
      * @param  array  $config
      *
@@ -52,7 +52,7 @@ class S3BrowserBasedUploadsFactory
     }
 
     /**
-     * get the conditions
+     * get the conditions.
      *
      * @param  array  $config
      *
@@ -64,7 +64,7 @@ class S3BrowserBasedUploadsFactory
     }
 
     /**
-     * get the expiration time
+     * get the expiration time.
      *
      * @param  array  $config
      *

@@ -2,8 +2,8 @@
 
 namespace Hassan\S3BrowserBasedUploads;
 
-use Illuminate\Contracts\Config\Repository;
 use GrahamCampbell\Manager\AbstractManager;
+use Illuminate\Contracts\Config\Repository;
 
 class S3BrowserBasedUploadsManager extends AbstractManager
 {
