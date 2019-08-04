@@ -58,6 +58,18 @@ request.send(formData);
 ```
 Check out [the demo with Filepond](demo.blade.php)
 
+
+Or Using Credentials Routes
+
+```
+// use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploads;
+
+public function boot()
+{
+    S3BrowserBasedUploads::routes();
+}
+```
+
 ### Security
 
 If you discover any security related issues, please email hello@hassan-ali.me instead of using the issue tracker.
