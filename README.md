@@ -1,6 +1,9 @@
 # Laravel S3 Browser Based Uploads
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/hassan/laravel-s3-browser-based-uploads.svg?style=flat-square)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
+[![Build Status](https://badgen.net/travis/dhassanali/laravel-s3-browser-based-uploads/master)](https://travis-ci.org/dhassanali/laravel-s3-browser-based-uploads)
+[![Coverage Status](https://badgen.net/codecov/c/github/dhassanali/laravel-s3-browser-based-uploads)](https://codecov.io/github/dhassanali/laravel-s3-browser-based-uploads)
+[![License](https://badgen.net/packagist/license/hassan/laravel-s3-browser-based-uploads)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
 
 Upload files to AWS S3 Directly from Browser
 
