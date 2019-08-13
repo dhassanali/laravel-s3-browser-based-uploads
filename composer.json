@@ -5,7 +5,7 @@
         "hassan",
         "laravel-s3-browser-based-uploads"
     ],
-    "homepage": "https://github.com/hassan/laravel-s3-browser-based-uploads",
+    "homepage": "https://github.com/dhassanali/laravel-s3-browser-based-uploads",
     "license": "MIT",
     "type": "library",
     "authors": [
