@@ -2,8 +2,8 @@
 
 namespace Hassan\S3BrowserBasedUploads\Tests;
 
-use Hassan\S3BrowserBasedUploads\ServiceProvider;
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
+use Hassan\S3BrowserBasedUploads\ServiceProvider;
 
 abstract class AbstractTestCase extends AbstractPackageTestCase
 {

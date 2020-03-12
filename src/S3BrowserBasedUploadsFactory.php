@@ -14,7 +14,7 @@ class S3BrowserBasedUploadsFactory
      *
      * @return S3BrowserBasedUploads
      */
-    public function make(array $config) : S3BrowserBasedUploads
+    public function make(array $config): S3BrowserBasedUploads
     {
         $adapter = $this->getS3Adapter($config);
 
@@ -34,7 +34,7 @@ class S3BrowserBasedUploadsFactory
      *
      * @return AwsS3Adapter
      */
-    protected function getS3Adapter(array $config) : AwsS3Adapter
+    protected function getS3Adapter(array $config): AwsS3Adapter
     {
         return app('filesystem')->disk(Arr::get($config, 'disk', 's3'))->getAdapter();
     }
@@ -46,7 +46,7 @@ class S3BrowserBasedUploadsFactory
      *
      * @return array
      */
-    protected function getInputs(array $config) : array
+    protected function getInputs(array $config): array
     {
         return Arr::get($config, 'inputs', []);
     }
@@ -58,7 +58,7 @@ class S3BrowserBasedUploadsFactory
      *
      * @return array
      */
-    protected function getConditions(array $config) : array
+    protected function getConditions(array $config): array
     {
         return Arr::get($config, 'conditions', []);
     }
@@ -70,7 +70,7 @@ class S3BrowserBasedUploadsFactory
      *
      * @return string
      */
-    protected function getExpirationTime(array $config) : string
+    protected function getExpirationTime(array $config): string
     {
         return Arr::get($config, 'expiration_time', '+5 minutes');
     }

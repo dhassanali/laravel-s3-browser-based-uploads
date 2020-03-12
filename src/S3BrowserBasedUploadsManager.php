@@ -34,7 +34,7 @@ class S3BrowserBasedUploadsManager extends AbstractManager
      *
      * @return S3BrowserBasedUploads
      */
-    protected function createConnection(array $config) : S3BrowserBasedUploads
+    protected function createConnection(array $config): S3BrowserBasedUploads
     {
         return $this->factory->make($config);
     }
@@ -44,7 +44,7 @@ class S3BrowserBasedUploadsManager extends AbstractManager
      *
      * @return string
      */
-    protected function getConfigName() : string
+    protected function getConfigName(): string
     {
         return 's3-browser-based-uploads';
     }
