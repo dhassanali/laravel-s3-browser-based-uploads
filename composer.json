@@ -15,17 +15,17 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2.5",
         "aws/aws-sdk-php": "^3.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "graham-campbell/manager": "^4.2",
-        "illuminate/support": "5.8.*",
-        "illuminate/contracts": "5.8.*"
+        "illuminate/support": "^5.8|^6.0|^7.0",
+        "illuminate/contracts": "^5.8|^6.0|^7.0"
     },
     "require-dev": {
         "graham-campbell/testbench": "^5.2",
         "mockery/mockery": "^1.2",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {
