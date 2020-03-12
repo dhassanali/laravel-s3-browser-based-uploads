@@ -10,7 +10,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot() : void
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -22,7 +22,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Register the application services.
      */
-    public function register() : void
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 's3-browser-based-uploads');
 
@@ -36,7 +36,7 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function registerFactory() : void
+    public function registerFactory(): void
     {
         $this->app->singleton('s3-browser-based-uploads.factory', static function () {
             return new S3BrowserBasedUploadsFactory;
@@ -50,7 +50,7 @@ class ServiceProvider extends BaseServiceProvider
      *
      * @return void
      */
-    public function registerManager() : void
+    public function registerManager(): void
     {
         $this->app->singleton('s3-browser-based-uploads', static function (Container $app) {
             return new S3BrowserBasedUploadsManager($app['config'], $app['s3-browser-based-uploads.factory']);

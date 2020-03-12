@@ -2,11 +2,11 @@
 
 namespace Hassan\S3BrowserBasedUploads\Tests;
 
-use Mockery;
-use Illuminate\Contracts\Config\Repository;
 use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploads;
 use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploadsFactory;
 use Hassan\S3BrowserBasedUploads\S3BrowserBasedUploadsManager;
+use Illuminate\Contracts\Config\Repository;
+use Mockery;
 
 class ManagerTest extends AbstractTestCase
 {

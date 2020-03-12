@@ -25,7 +25,7 @@ class S3BrowserBasedUploads extends PostObjectV4
      *
      * @return string
      */
-    public function getEndpointUrl() : string
+    public function getEndpointUrl(): string
     {
         return $this->getFormAttributes()['action'];
     }
@@ -35,7 +35,7 @@ class S3BrowserBasedUploads extends PostObjectV4
      *
      * @return array
      */
-    public function getFields() : array
+    public function getFields(): array
     {
         return $this->getFormInputs();
     }
