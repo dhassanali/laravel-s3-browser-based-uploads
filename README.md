@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/hassan/laravel-s3-browser-based-uploads.svg?style=flat-square)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
 [![Build Status](https://badgen.net/travis/dhassanali/laravel-s3-browser-based-uploads/master)](https://travis-ci.org/dhassanali/laravel-s3-browser-based-uploads)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
+[![Total Downloads](https://poser.pugx.org/hassan/laravel-s3-browser-based-uploads/d/total.svg)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
 [![License](https://badgen.net/packagist/license/hassan/laravel-s3-browser-based-uploads)](https://packagist.org/packages/hassan/laravel-s3-browser-based-uploads)
 
 
