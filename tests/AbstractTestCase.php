@@ -7,12 +7,12 @@ use Hassan\S3BrowserBasedUploads\ServiceProvider;
 
 abstract class AbstractTestCase extends AbstractPackageTestCase
 {
-    protected function getServiceProviderClass($app)
+    protected function getServiceProviderClass(): string
     {
         return ServiceProvider::class;
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         parent::getEnvironmentSetUp($app);
 
@@ -25,7 +25,7 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
         ]);
     }
 
-    protected function getConfig()
+    protected function getConfig(): array
     {
         return [
             'disk' => 's3',

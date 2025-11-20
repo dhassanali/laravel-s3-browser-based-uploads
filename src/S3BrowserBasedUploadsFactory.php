@@ -2,8 +2,8 @@
 
 namespace Hassan\S3BrowserBasedUploads;
 
+use Aws\S3\S3Client;
 use Illuminate\Support\Arr;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
 
 class S3BrowserBasedUploadsFactory
 {
@@ -16,11 +16,11 @@ class S3BrowserBasedUploadsFactory
      */
     public function make(array $config): S3BrowserBasedUploads
     {
-        $adapter = $this->getS3Adapter($config);
+        $diskConfig = $this->getDiskConfig($config);
 
         return new S3BrowserBasedUploads(
-            $adapter->getClient(),
-            $adapter->getBucket(),
+            $this->createS3Client($diskConfig),
+            $this->getBucket($diskConfig),
             $this->getInputs($config),
             $this->getConditions($config),
             $this->getExpirationTime($config)
@@ -28,15 +28,58 @@ class S3BrowserBasedUploadsFactory
     }
 
     /**
-     * get the s3 adapter.
+     * Get the filesystem disk configuration.
      *
      * @param array $config
      *
-     * @return AwsS3Adapter
+     * @return array
      */
-    protected function getS3Adapter(array $config): AwsS3Adapter
+    protected function getDiskConfig(array $config): array
     {
-        return app('filesystem')->disk(Arr::get($config, 'disk', 's3'))->getAdapter();
+        $diskName = Arr::get($config, 'disk', 's3');
+
+        return config("filesystems.disks.{$diskName}");
+    }
+
+    /**
+     * Create an S3 client from disk configuration.
+     *
+     * @param array $diskConfig
+     *
+     * @return S3Client
+     */
+    protected function createS3Client(array $diskConfig): S3Client
+    {
+        $clientConfig = [
+            'version' => 'latest',
+            'region' => $diskConfig['region'],
+            'credentials' => [
+                'key' => $diskConfig['key'],
+                'secret' => $diskConfig['secret'],
+            ],
+        ];
+
+        if (isset($diskConfig['endpoint'])) {
+            $clientConfig['endpoint'] = $diskConfig['endpoint'];
+        }
+
+        if (isset($diskConfig['use_path_style_endpoint'])) {
+            $clientConfig['use_path_style_endpoint'] = $diskConfig['use_path_style_endpoint'];
+        }
+
+        return new S3Client($clientConfig);
+    }
+
+    /**
+     * Get the bucket name from disk configuration.
+     *
+     * @param array $diskConfig
+     *
+     * @return string
+     */
+    protected function getBucket(array $diskConfig): string
+    {
+        return $diskConfig['bucket'];
     }
 
     /**
@@ -69,9 +112,24 @@ class S3BrowserBasedUploadsFactory
      * @param  array  $config
      *
      * @return string
+     * @throws \InvalidArgumentException
      */
     protected function getExpirationTime(array $config): string
     {
-        return Arr::get($config, 'expiration_time', '+5 minutes');
+        $expiration = Arr::get($config, 'expiration_time', '+5 minutes');
+
+        // Validate expiration time for security (AWS recommends short-lived URLs)
+        $expirationTimestamp = strtotime($expiration);
+        $maxExpiration = strtotime('+12 hours');
+
+        if ($expirationTimestamp === false) {
+            throw new \InvalidArgumentException("Invalid expiration time format: {$expiration}");
+        }
+
+        if ($expirationTimestamp > $maxExpiration) {
+            throw new \InvalidArgumentException('Expiration time exceeds 12 hours. For security, use shorter expiration times.');
+        }
+
+        return $expiration;
     }
 }

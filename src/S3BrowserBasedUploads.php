@@ -49,11 +49,14 @@ class S3BrowserBasedUploads extends PostObjectV4
      */
     public static function routes(array $options = [])
     {
-        $options = array_merge([
-            'as'        => 's3_browser_based_uploads.',
-            'prefix'    => 's3_browser_based_uploads',
-            'namespace' => '\Hassan\S3BrowserBasedUploads\Http\Controllers',
-        ], $options);
+        $defaultOptions = [
+            'as'         => 's3_browser_based_uploads.',
+            'prefix'     => 's3_browser_based_uploads',
+            'namespace'  => '\Hassan\S3BrowserBasedUploads\Http\Controllers',
+            'middleware' => ['throttle:60,1'], // Rate limit: 60 requests per minute
+        ];
+
+        $options = array_merge($defaultOptions, $options);
 
         Route::group($options, static function ($router) {
             $router->get('/credentials', 'CredentialsController')->name('credentials');

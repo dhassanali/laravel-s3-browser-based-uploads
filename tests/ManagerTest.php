@@ -10,7 +10,7 @@ use Mockery;
 
 class ManagerTest extends AbstractTestCase
 {
-    public function test_meke_connection()
+    public function test_make_connection()
     {
         $repository = Mockery::mock(Repository::class);
         $factory = new S3BrowserBasedUploadsFactory;

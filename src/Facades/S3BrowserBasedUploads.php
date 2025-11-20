@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static string getEndpointUrl()
  * @method static array getFields()
+ * @method static \Hassan\S3BrowserBasedUploads\S3BrowserBasedUploads connection(string|null $name = null)
  */
 class S3BrowserBasedUploads extends Facade
 {
